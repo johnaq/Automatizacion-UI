@@ -1,0 +1,14 @@
+{
+  "name": "automatizacion-ui",
+  "version": "1.0.0",
+  "description": "Pruebas Y CO",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcafe chrome tests/test.js"
+  },
+  "author": "John Quintero",
+  "license": "ISC",
+  "dependencies": {
+    "testcafe": "^2.1.0"
+  }
+}

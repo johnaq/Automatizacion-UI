@@ -16,6 +16,8 @@ test("Build your own computer", async t => {
     
     await nopCommerce.selectRam("8GB [+$60.00]")
     await nopCommerce.checkHdd();
+    await nopCommerce.selectSoftware();
+    await nopCommerce.productAddToCart();
 
 })
 

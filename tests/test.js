@@ -18,7 +18,6 @@ test("Build your own computer", async t => {
     await nopCommerce.checkHdd();
     await nopCommerce.selectSoftware();
     await nopCommerce.productAddToCart();
-
 })
 
 

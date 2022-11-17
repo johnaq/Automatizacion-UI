@@ -18,6 +18,11 @@ test("Build your own computer", async t => {
     await nopCommerce.checkHdd();
     await nopCommerce.selectSoftware();
     await nopCommerce.productAddToCart();
+    await t.expect(nopCommerce.notification.innerText).contains("The product has been added to your ")
+
+    await nopCommerce.irAlCarrito();
+
+    await t.wait(2000);
 })
 
 

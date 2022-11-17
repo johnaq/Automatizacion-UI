@@ -16,8 +16,13 @@ class NopCommerce {
 
         this.productSoftware1 = Selector("#product_attribute_5_11");
         this.productSoftware2 = Selector("#product_attribute_5_12");
-
+        
+        this.productPrice = Selector("#price-value-1")
         this.productAddToCartButton = Selector("#add-to-cart-button-1");
+
+        this.notification = Selector(".bar-notification").child("p.content");
+
+        this.carritoBoton = Selector("#topcartlink")
     }
 
     async hoverMenuComputer(){
@@ -57,6 +62,11 @@ class NopCommerce {
     async productAddToCart(){
         await t.click(this.productAddToCartButton)
         .wait(2000)
+    }
+
+    async irAlCarrito(){
+        await t.click(this.carritoBoton)
+        .wait(500);
     }
 
 }

@@ -2,7 +2,7 @@ import NopCommerce from '../page-object/nop-commerce'
 
 
 const nopCommerce = new NopCommerce()
-
+var precio;
 
 fixture `Realizar compra de un computador`
 .page `https://demo.nopcommerce.com/`
@@ -17,8 +17,9 @@ test("Build your own computer", async t => {
     await nopCommerce.selectRam("8GB [+$60.00]")
     await nopCommerce.checkHdd();
     await nopCommerce.selectSoftware();
+    precio = await nopCommerce.productPrice.innerText;
     await nopCommerce.productAddToCart();
-    await t.expect(nopCommerce.notification.innerText).contains("The product has been added to your ")
+    await t.expect(nopCommerce.notification.innerText).contains("The product has been added to your shopping cart")
 
     await nopCommerce.irAlCarrito();
 

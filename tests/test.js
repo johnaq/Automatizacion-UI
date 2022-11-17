@@ -1,27 +1,53 @@
-import NopCommerce from '../page-object/nop-commerce'
+import HomePage from '../page-object/home-page'
+import ProductPage from '../page-object/product-page';
+import ShoppingCartPage from '../page-object/shoppingcart-page';
 
 
-const nopCommerce = new NopCommerce()
-var precio;
+const homePage = new HomePage();
+const productPage = new ProductPage();
+const shoppingCart = new ShoppingCartPage();
 
-fixture `Realizar compra de un computador`
+const ramId = 3;
+var price, ram, hdd, software, productLeica, productLeicaPrice;
+
+fixture `Realizar compras`
 .page `https://demo.nopcommerce.com/`
 
 test("Build your own computer", async t => {
     await t.maximizeWindow().wait(500);
-    await nopCommerce.hoverMenuComputer();
-    await nopCommerce.clickMenuDesktops();
-    await nopCommerce.clickAddToCart();
-    await t.expect(nopCommerce.productName.innerText).eql("Build your own computer");
-    
-    await nopCommerce.selectRam("8GB [+$60.00]")
-    await nopCommerce.checkHdd();
-    await nopCommerce.selectSoftware();
-    precio = await nopCommerce.productPrice.innerText;
-    await nopCommerce.productAddToCart();
-    await t.expect(nopCommerce.notification.innerText).contains("The product has been added to your shopping cart")
+    await homePage.hoverMenuComputer();
+    await homePage.clickMenuDesktops();
+    await homePage.clickAddToCart();
 
-    await nopCommerce.irAlCarrito();
+    await t.expect(productPage.productName.innerText).eql("Build your own computer");
+    await productPage.selectRam(ramId)
+    await productPage.checkHdd();
+    await productPage.selectSoftware();
+    await productPage.productAddToCart();
+    await t.expect(productPage.notification.innerText).contains("The product has been added to your shopping cart");
+    price = await productPage.productPrice.innerText;
+    ram = await productPage.productRamOption.nth(ramId).innerText;
+    hdd = await productPage.hdd.innerText;
+    software = await productPage.productSoftware.innerText;
+
+    await productPage.goShoppingCart();
+    await t.expect(shoppingCart.productInfo.innerText).contains(hdd);
+    await t.expect(shoppingCart.productInfo.innerText).contains(ram);
+    await t.expect(shoppingCart.productInfo.innerText).contains(software);
+    await t.expect(shoppingCart.priceUnit.innerText).eql(price);
+
+    await homePage.hoverMenuElectronics();
+    await homePage.clickMenuCameraAndPhoto();
+
+    productLeica = await productPage.productLeicaName.innerText;
+    productLeicaPrice = await productPage.productLeicaPrice.innerText;
+    await productPage.productLeicaAddToCart();
+    await t.expect(productPage.notification.innerText).contains("The product has been added to your shopping cart");
+
+    await productPage.goShoppingCart();
+    await t.expect(shoppingCart.productLeicaUnitPrice.innerText).eql(price);
+    await t.expect(shoppingCart.productLeicaSubTotal.innerText).eql(price);
+
 
     await t.wait(2000);
 })

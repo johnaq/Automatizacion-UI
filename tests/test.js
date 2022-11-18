@@ -25,6 +25,7 @@ test("Build your own computer", async t => {
     await productPage.selectSoftware();
     await productPage.productAddToCart();
     await t.expect(productPage.notification.innerText).contains("The product has been added to your shopping cart");
+    
     price = await productPage.productPrice.innerText;
     ram = await productPage.productRamOption.nth(ramId).innerText;
     hdd = await productPage.hdd.innerText;

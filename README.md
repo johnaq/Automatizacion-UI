@@ -1,6 +1,6 @@
 # Automatización UI
 
-Para ejecutar primero ejecutar el siguiente comando:
+Antes de correr el test ejecutar el siguiente comando:
 
 `npm install`
 

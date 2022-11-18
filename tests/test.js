@@ -30,11 +30,6 @@ test("Build your own computer", async t => {
     hdd = await productPage.hdd.innerText;
     software = await productPage.productSoftware.innerText;
 
-    // console.log("Precio: " + price);
-    // console.log("Hdd: " + hdd);
-    // console.log("Ram: " + ram);
-    // console.log("Software: " + software);
-
     await productPage.goShoppingCart();
     await t.expect(shoppingCart.productInfo.innerText).contains(hdd);
     await t.expect(shoppingCart.productInfo.innerText).contains(ram);

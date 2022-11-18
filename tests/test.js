@@ -13,7 +13,7 @@ var price, ram, hdd, software, productLeica, productLeicaPrice;
 fixture `Realizar compras`
 .page `https://demo.nopcommerce.com/`
 
-test("Build your own computer", async t => {
+test("Realizar compra de productos en la tienda y verificar que los datos sean correctos", async t => {
     await t.maximizeWindow().wait(500);
     await homePage.hoverMenuComputer();
     await homePage.clickMenuDesktops();

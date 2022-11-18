@@ -25,11 +25,15 @@ test("Build your own computer", async t => {
     await productPage.selectSoftware();
     await productPage.productAddToCart();
     await t.expect(productPage.notification.innerText).contains("The product has been added to your shopping cart");
-    
     price = await productPage.productPrice.innerText;
     ram = await productPage.productRamOption.nth(ramId).innerText;
     hdd = await productPage.hdd.innerText;
     software = await productPage.productSoftware.innerText;
+
+    // console.log("Precio: " + price);
+    // console.log("Hdd: " + hdd);
+    // console.log("Ram: " + ram);
+    // console.log("Software: " + software);
 
     await productPage.goShoppingCart();
     await t.expect(shoppingCart.productInfo.innerText).contains(hdd);
@@ -46,9 +50,8 @@ test("Build your own computer", async t => {
     await t.expect(productPage.notification.innerText).contains("The product has been added to your shopping cart");
 
     await productPage.goShoppingCart();
-    await t.expect(shoppingCart.productLeicaUnitPrice.innerText).eql(price);
-    await t.expect(shoppingCart.productLeicaSubTotal.innerText).eql(price);
-
+    await t.expect(shoppingCart.productLeicaUnitPrice.innerText).eql(productLeicaPrice);
+    await t.expect(shoppingCart.productLeicaSubTotal.innerText).eql(productLeicaPrice);
 
     await t.wait(2000);
 })

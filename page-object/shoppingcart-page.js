@@ -9,7 +9,6 @@ class ShoppingCartPage {
         this.productLeicaUnitPrice = Selector(".cart").find("tbody").child(1).find(".product-unit-price");
         this.productLeicaSubTotal = Selector(".cart").find("tbody").child(1).find(".product-subtotal");
     }
-
 }
 
 export default ShoppingCartPage

@@ -2,7 +2,6 @@ import HomePage from '../page-object/home-page'
 import ProductPage from '../page-object/product-page';
 import ShoppingCartPage from '../page-object/shoppingcart-page';
 
-
 const homePage = new HomePage();
 const productPage = new ProductPage();
 const shoppingCart = new ShoppingCartPage();
@@ -31,7 +30,7 @@ test("Realizar compra de productos en la tienda y verificar que los datos sean c
     software = await productPage.productSoftware.innerText;
 
     await productPage.goShoppingCart();
-    //validaciones - assert
+    //asserts - validaciones
     await t.expect(shoppingCart.productInfo.innerText).contains(hdd);
     await t.expect(shoppingCart.productInfo.innerText).contains(ram);
     await t.expect(shoppingCart.productInfo.innerText).contains(software);

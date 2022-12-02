@@ -31,6 +31,7 @@ test("Realizar compra de productos en la tienda y verificar que los datos sean c
     software = await productPage.productSoftware.innerText;
 
     await productPage.goShoppingCart();
+    //validaciones
     await t.expect(shoppingCart.productInfo.innerText).contains(hdd);
     await t.expect(shoppingCart.productInfo.innerText).contains(ram);
     await t.expect(shoppingCart.productInfo.innerText).contains(software);
